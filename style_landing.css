@@ -1,0 +1,388 @@
+/* Landing Page Stylesheet */
+
+/* Declare Fonts */
+@font-face {
+  font-family: "sh-pinscher";
+  src: url("fonts/sh-pinscher.woff"), url("fonts/sh-pinscher.woff2");
+}
+
+@font-face {
+  font-family: "felipe";
+  src: url("fonts/felipe.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "soda-cream";
+  src: url("fonts/soda-cream.otf") format("opentype");
+}
+
+body {
+  background-image: url(img/bg-fnv-skyline.png);
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+section {
+  width: 100%;
+}
+
+p.disclaimer {
+  font-family:
+    sh-pinscher,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  animation: none;
+  -webkit-animation: none;
+  color: var(--slugyellow);
+  text-shadow: 1px 2px 4px var(--slugyellow-sh);
+}
+
+/* Enter, Warning, Exit Buttons */
+.buttons {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+button.btn-landing {
+  border: var(--sluggreen-sh) 3px double;
+  opacity: 0.95;
+  animation: glow-text-white 1s ease-in-out infinite;
+  -moz-animation: glow-text-white 1s ease-in-out infinite;
+  -webkit-animation: glow-text-white 1s ease-in-out infinite;
+  background-color: #4e542ad8;
+}
+
+button.btn-landing:hover {
+  background-color: #2a4e54c6;
+  color: var(--slugblue);
+  border-color: var(--slugblue);
+}
+
+button.btn-landing a:hover,
+button.btn-landing p:hover {
+  animation: glow-text-blue 5s ease-in-out infinite;
+  -moz-animation: glow-text-blue 5s ease-in-out infinite;
+  -webkit-animation: glow-text-blue 5s ease-in-out infinite;
+}
+
+button.btn-landing a,
+button.btn-landing p {
+  font-size: 2rem;
+  padding-left: 1em;
+  padding-right: 1em;
+  color: var(--sluggreen);
+  animation: glow-text-green 3s infinite;
+  -moz-animation: glow-text-green 3s infinite;
+  -webkit-animation: glow-text-green 3s infinite;
+}
+
+/* Post-It Note Stuff */
+form.form-note {
+  max-width: 50%;
+  margin: 0;
+}
+
+.esrb {
+  margin-bottom: 1em;
+}
+
+p.p-note,
+h3.h3-note {
+  font-family:
+    soda-cream,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  color: #000000;
+  text-shadow: none;
+  animation: none;
+  -webkit-animation: none;
+  -moz-animation: none;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+button.btn-note {
+  color: rgb(197, 52, 52);
+  background: rgb(207, 207, 207);
+  border-color: antiquewhite;
+  border-style: outset;
+  border-radius: 2px;
+  animation: none;
+  -moz-animation: none;
+  -webkit-animation: none;
+  margin-top: 1em;
+  padding-top: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+dialog.dialog-note {
+  background-color: transparent;
+  border: none;
+  width: 500px;
+  height: 466px;
+  margin: auto;
+  position: fixed;
+  transform: rotate(-4deg);
+}
+
+dialog.dialog-note > div.note {
+  background-image: url(img/landing/dither_it_paper-blood-500.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  width: 500px;
+  height: 466px;
+}
+
+h1.graf {
+  font-family:
+    felipe,
+    system-ui,
+    -apple-system,
+    BaMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 6rem;
+  margin-bottom: 0;
+  animation: glow-h 5s infinite;
+  -moz-animation: glow-h 5s infinite;
+  -webkit-animation: glow-h 5s infinite;
+}
+
+/* Animations */
+@keyframes glow-text-green {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(209, 243, 41, 0.5),
+      0 0 0.6vw rgba(189, 243, 41, 0.2),
+      0 0 1vw rgba(209, 243, 41, 0.5),
+      0 0 1vw rgba(196, 243, 41, 0.4),
+      0 0 0.4vw rgba(198, 251, 91, 0.65),
+      0 0 0.1vw rgba(82, 119, 7, 0.4);
+    color: rgba(196, 232, 97, 0.8);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(89, 119, 7, 0.65),
+      0 0 0.25vw rgba(97, 119, 7, 0.6),
+      0 0 1vw rgba(89, 119, 7, 0.5),
+      0 0 1vw rgba(82, 119, 7, 0.75),
+      0 0 0.2vw rgba(82, 119, 7, 0.7),
+      0 0 0.1vw rgba(118, 160, 34, 0.6);
+    color: rgba(201, 232, 97, 0.75);
+  }
+}
+
+@keyframes glow-text-white {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(241, 241, 241, 0.5),
+      0 0 0.6vw rgba(241, 241, 241, 0.2),
+      0 0 1vw rgba(238, 238, 238, 0.5),
+      0 0 1vw rgba(237, 237, 237, 0.4),
+      0 0 0.4vw rgba(255, 255, 255, 0.65),
+      0 0 0.1vw rgba(115, 115, 115, 0.4);
+    color: rgba(235, 235, 235, 0.7);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(105, 105, 105, 0.65),
+      0 0 0.25vw rgba(119, 119, 119, 0.6),
+      0 0 1vw rgba(112, 112, 112, 0.5),
+      0 0 1vw rgba(109, 109, 109, 0.75),
+      0 0 0.2vw rgba(113, 113, 113, 0.7),
+      0 0 0.1vw rgba(152, 152, 152, 0.6);
+    color: rgba(237, 237, 237, 0.8);
+  }
+}
+
+@keyframes glow-a {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.1vw rgb(90, 205, 185, 0.1),
+      0 0 0.2vw rgb(90, 205, 185, 0.025),
+      0 0 0.2vw rgba(78, 216, 216, 0.2),
+      0 0 0.3vw rgb(90, 205, 185, 0.15),
+      0 0 0.1vw rgba(150, 251, 255, 0.2),
+      0 0 0.1vw rgba(46, 141, 155, 0.25);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.15vw rgba(57, 168, 159, 0.3),
+      0 0 0.2vw rgb(57, 168, 159, 0.4),
+      0 0 0.3vw rgb(57, 168, 159, 0.25),
+      0 0 0.2vw rgb(57, 168, 159, 0.3),
+      0 0 0.075vw rgb(57, 168, 159, 0.35),
+      0.02vw rgba(34, 160, 158, 0.4);
+    color: rgba(90, 205, 185, 0.9);
+  }
+}
+
+@keyframes glow-h {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgb(254, 243, 122, 0.4),
+      0 0 0.6vw rgb(254, 243, 122, 0.2),
+      0 0 1vw rgba(216, 205, 78, 0.4),
+      0 0 1vw rgb(254, 243, 122, 0.25),
+      0 0 0.4vw rgba(255, 246, 150, 0.5),
+      0 0 0.1vw rgba(155, 146, 46, 0.35);
+    color: rgb(254, 243, 122, 0.85);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(168, 159, 57, 0.65),
+      0 0 0.25vw rgb(168, 159, 57, 0.6),
+      0 0 1vw rgb(168, 159, 57, 0.5),
+      0 0 1vw rgb(168, 159, 57, 0.75),
+      0 0 0.2vw rgb(168, 159, 57, 0.7),
+      0 0 0.1vw rgba(149, 160, 34, 0.6);
+    color: rgba(225, 216, 122, 0.9);
+  }
+}
+
+@keyframes glow-hr {
+  0%,
+  100% {
+    box-shadow: 0 0 10px 1px rgba(154, 144, 29, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 10px 1px rgba(254, 243, 122, 0.5);
+  }
+}
+
+@keyframes glow-p {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.1vw rgba(253, 242, 122, 0.169),
+      0 0 2px rgba(254, 243, 122, 0.146),
+      0 0 2px rgba(216, 204, 78, 0.215),
+      0 0 3px rgba(254, 243, 122, 0.265),
+      0 0 1px rgba(255, 246, 150, 0.215),
+      0 0 1px rgba(155, 146, 46, 0.25);
+    color: rgba(254, 243, 122, 0.9);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.15vw rgba(168, 159, 57, 0.3),
+      0 0 2px rgb(168, 159, 57, 0.4),
+      0 0 3px rgb(168, 159, 57, 0.25),
+      0 0 2px rgb(168, 159, 57, 0.3),
+      0 0 1px rgb(168, 159, 57, 0.35),
+      0.02vw rgba(149, 160, 34, 0.4);
+    color: rgba(254, 243, 122, 0.95);
+  }
+}
+
+@keyframes glow-text {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(203, 243, 41, 0.5),
+      0 0 0.6vw rgb(203, 243, 41, 0.2),
+      0 0 1vw rgb(203, 243, 41, 0.5),
+      0 0 1vw rgb(203, 243, 41, 0.4),
+      0 0 0.4vw rgb(177, 251, 91, 0.65),
+      0 0 0.1vw rgb(67, 119, 7, 0.4);
+    color: rgb(203, 243, 41, 0.9);
+    border-color: rgb(97, 232, 209);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(85, 119, 7, 0.65),
+      0 0 0.25vw rgb(85, 119, 7, 0.6),
+      0 0 1vw rgb(85, 119, 7, 0.5),
+      0 0 1vw rgb(85, 119, 7, 0.75),
+      0 0 0.2vw rgb(85, 119, 7, 0.7),
+      0 0 0.1vw rgba(118, 160, 34, 0.6);
+    color: rgba(183, 230, 28, 0.8);
+    border-color: rgb(90, 205, 185, 0.875);
+  }
+}
+
+@keyframes glow-text-blue {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(41, 243, 219, 0.5),
+      0 0 0.6vw rgb(41, 243, 219, 0.2),
+      0 0 1vw rgb(41, 243, 219, 0.5),
+      0 0 1vw rgb(41, 243, 219, 0.4),
+      0 0 0.4vw rgba(91, 240, 251, 0.65),
+      0 0 0.1vw rgba(7, 119, 113, 0.4);
+    color: rgb(97, 232, 209, 0.8);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(7, 119, 100, 0.65),
+      0 0 0.25vw rgba(7, 119, 100, 0.6),
+      0 0 1vw rgba(7, 119, 108, 0.5),
+      0 0 1vw rgba(7, 119, 119, 0.75),
+      0 0 0.2vw rgba(7, 119, 100, 0.7),
+      0 0 0.1vw rgba(34, 160, 147, 0.6);
+    color: rgba(97, 232, 209, 0.75);
+  }
+}
+
+@keyframes glow-text-purple {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(243, 41, 203, 0.25),
+      0 0 0.6vw rgba(205, 42, 159, 0.1),
+      0 0 1vw rgb(243, 41, 186, 0.35),
+      0 0 1vw rgba(246, 55, 192, 0.387),
+      0 0 0.4vw rgba(223, 83, 169, 0.5),
+      0 0 0.1vw rgba(172, 31, 132, 0.2);
+    color: rgba(248, 88, 149, 0.9);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(243, 41, 186, 0.3),
+      0 0 0.25vw rgba(119, 7, 85, 0.4),
+      0 0 1vw rgba(119, 7, 72, 0.325),
+      0 0 1vw rgba(119, 7, 91, 0.5),
+      0 0 0.2vw rgba(119, 7, 69, 0.4),
+      0 0 0.1vw rgba(160, 34, 101, 0.461);
+    color: rgba(242, 94, 168, 0.8);
+  }
+}

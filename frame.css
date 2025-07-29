@@ -1,0 +1,996 @@
+/* WELCOME dear code viewer to Salty 3.0. This site actually has two stylesheets: one for the page outside the central iFrame, and then another for the actual iFrame content. */
+
+/* Declare fonts */
+@font-face {
+  font-family: "04b";
+  src: url("fonts/04b_08.woff"), url("fonts/04b_08.woff2");
+}
+
+@font-face {
+  font-family: "awful";
+  src: url("fonts/awfullydigital.woff"), url("fonts/awfullydigital.woff2");
+}
+
+@font-face {
+  font-family: "sh-pinscher";
+  src: url("fonts/sh-pinscher.woff"), url("fonts/sh-pinscher.woff2");
+}
+
+@font-face {
+  font-family: "nkairlines";
+  src: url("fonts/north_korea_airlines.otf") format("opentype");
+}
+
+/* Declare color variables */
+:root {
+  --sluggreen: #b8eb00;
+  --sluggreen-sh: #89ad12;
+  --slugblack: #373737;
+  --slugblue: #5acdb9;
+  --slugblue-sh: #de7bef;
+  --slugyellow: #fef37a;
+  --slugyellow-sh: #bdb33b;
+  --slugorange: #ffdc2e;
+  --slugorange-sh: #eca528;
+  --slugred: #e54c09;
+  --slugpink: #f2628f;
+  --slugpink-sh: #db4c79;
+}
+
+/* CSS reset */
+* {
+  box-sizing: border-box;
+  /* Hide scrollbar in all browsers. */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide scrollbar in other browsers. */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* HTML reset - to make sure no weird margins/padding throws the rest of this sheet off. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+body {
+  background-image: url(img/bg-fnv-skyline.png);
+  background-size: cover;
+  cursor: url("img/biohazard-red.cur"), auto;
+}
+
+body p {
+  font-family:
+    "awful",
+    system-ui,
+    -apple-system,
+    BaMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  color: var(--sluggreen);
+  opacity: 0.9;
+  animation: glow-text 3s ease-in-out infinite;
+  -moz-animation: glow-text 3s ease-in-out infinite;
+  -webkit-animation: glow-text 3s ease-in-out infinite;
+}
+
+/* This changes the cursor color when you hover over a link. */
+a:hover,
+button:hover {
+  cursor: url("img/biohazard-green.cur"), auto;
+}
+
+/* This wrapper holds the main container and makes sure it doesn't zoom off the screen */
+#wrapper {
+  display: flex;
+  flex-flow: nowrap;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* This is for the cartoony navigation frame. It's purely decorative, so this class is removing possibility for interaction. The 'pointer-events' part is very important; without it you wouldn't be able to click on anything within the frame. */
+img.container-interface {
+  position: absolute;
+  max-width: 78.5vw;
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+  display: grid;
+  align-self: center;
+  padding-left: 3%;
+}
+
+/* This is the grid container for the framed content. It's a more modern rendition of a fixed width site. */
+div.container {
+  position: relative;
+  top: 8%;
+  width: 100%;
+  height: 82vh;
+  display: grid;
+  grid-template-columns: 6vw 69vw 25vw;
+  grid-template-rows: 20% 80%;
+  gap: 0;
+  grid-template-areas:
+    "null-left nav null-right"
+    "border-left iframe border-right";
+}
+
+/* This layers the nav over the iframe */
+nav,
+#border-left,
+#border-right {
+  z-index: 5;
+}
+
+#null-left {
+  grid-area: null-left;
+}
+
+#null-right {
+  grid-area: null-right;
+}
+
+/* Border Positions in container grid */
+#border-left {
+  grid-area: border-left;
+}
+
+#border-right {
+  grid-area: border-right;
+}
+
+/* This holds all the stuff sitting inside the "Navigation" area of the frame, like the nav buttons and Slug 3.0 logo. */
+nav {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  grid-area: nav;
+  display: grid;
+  grid-template-columns: 13.5% 55.5% 31%;
+  grid-template-areas: "nav-side nav-buttons nav-slug";
+  z-index: 5;
+  padding-right: 22%;
+  padding-left: 10%;
+}
+
+/* This grid item holds the Slug 3.0 logo and my iMood embed. */
+div.nav-side {
+  grid-area: nav-side;
+  height: 100%;
+  display: grid;
+  align-content: center;
+}
+
+img.nav-side-logo {
+  opacity: 0.9;
+  padding-bottom: 0.5em;
+  &:hover {
+    transition: 300ms ease-in-out;
+    animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+  }
+}
+
+div.nav-side-imood {
+  margin: auto;
+}
+
+div.nav-side-imood p {
+  font-size: small;
+  text-align: center;
+  font-weight: 100;
+}
+
+img.nav-side-imood {
+  border: solid 1px var(--sluggreen-sh);
+  border-radius: 2px;
+
+  &:hover {
+    transition: 200ms ease-in-out;
+    border-color: var(--slugblue);
+  }
+}
+
+/* This grid item holds the navigation buttons. */
+div.nav-buttons {
+  grid-area: nav-buttons;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100%;
+  grid-template-areas: "nav-btn-01 nav-btn-02 nav-btn-03";
+  gap: 0.75em;
+  align-self: center;
+  padding: 0 1rem;
+}
+
+/* There are also three columns which each hold three buttons. Crazy stuff. */
+div.nav-btn-01 {
+  grid-area: nav-btn-01;
+}
+
+div.nav-btn-02 {
+  grid-area: nav-btn-02;
+}
+
+div.nav-btn-03 {
+  grid-area: nav-btn-03;
+}
+
+/* Each column flexes to allow the three buttons to fit with no wrapping */
+div.nav-btn-01,
+div.nav-btn-02,
+div.nav-btn-03 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.75em;
+}
+
+/* These three classes make each column glow at a slightly different time, giving a nice "wave glow" effect without unnecessarily complex keyframes. */
+div.nav-btn-01 a.button > button {
+  animation: glow-btn 2.5s ease-in-out infinite;
+  -moz-animation: glow-btn 2.5s ease-in-out infinite;
+  -webkit-animation: glow-btn 2.5s ease-in-out infinite;
+}
+
+div.nav-btn-02 a.button > button {
+  animation: glow-btn 3s ease-in-out infinite;
+  -moz-animation: glow-btn 3s ease-in-out infinite;
+  -webkit-animation: glow-btn 3s ease-in-out infinite;
+}
+
+div.nav-btn-03 a.button > button {
+  animation: glow-btn 3.5s ease-in-out infinite;
+  -moz-animation: glow-btn 3.5s ease-in-out infinite;
+  -webkit-animation: glow-btn 3.5s ease-in-out infinite;
+}
+
+/* I had to commit HTML crimes on 'home.html' and nest buttons within <a> tags so that all the iframe pages redirect properly, so this just rips the style off <a> tags so it doesn't conflict with the button styling. */
+div.nav-buttons a.button {
+  background-color: transparent;
+  border: none;
+  border-radius: 0.3rem;
+}
+
+/* This styles the nav buttons nested inside the <a> tags; I set their width to 100% to avoid people accidentally clicking the wrong button because of my poor coding skills. I nested :active and :hover selectors inside the class to make up for the inefficiency. */
+div.nav-buttons a.button > button {
+  font-family:
+    "04b",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  background-image: linear-gradient(
+    to right,
+    #37373761 0%,
+    #33333343 51%,
+    #24242481 100%
+  );
+  background-color: transparent;
+  border: groove 2px var(--slugblue);
+  border-radius: 0.3rem;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  width: 100%;
+  height: auto;
+  font-size: medium;
+}
+
+div.nav-buttons a.button > button:hover {
+  background-image: linear-gradient(
+    to right,
+    #88888842 0%,
+    #b4b4b444 51%,
+    #a8a8a82c 100%
+  );
+  animation: glow-text 2.5s ease-in-out infinite;
+  -moz-animation: glow-text 2.5s ease-in-out infinite;
+  -webkit-animation: glow-text 2.5s ease-in-out infinite;
+}
+
+div.nav-buttons a.button > button:focus {
+  transition: 20ms ease-in-out;
+  transform: scale(0.935);
+  -webkit-transform: scale(0.935);
+  border-color: var(--slugblue-sh);
+  animation: none;
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  color: var(--slugorange);
+}
+
+/* This div holds the slug drawing in the nav. */
+div.nav-slug {
+  grid-area: nav-slug;
+  align-self: center;
+}
+
+/* The slug puffs up if you hover over it */
+img.nav-slug-img:hover {
+  transition: 250ms ease-in-out;
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+}
+
+/* This div holds the iframe inside the drawn frame .png; this iframe holds all the .html pages for the site. */
+div.iframe {
+  min-height: 100%;
+  width: 100%;
+  margin-top: -1%;
+  grid-area: iframe;
+  background-color: transparent;
+}
+
+div.iframe > iframe {
+  border-radius: 5%;
+  border-top-left-radius: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  background-color: transparent;
+}
+
+/* WIDGETS! */
+/* Melonland Surf Club Widget */
+object.melon-surf {
+  position: fixed;
+  width: 4vw;
+  bottom: 3%;
+  right: 1.5%;
+  z-index: 10;
+}
+
+/* status.cafe widget */
+div#statuscafe {
+  width: 16vw;
+  height: 10.5vh;
+  position: fixed;
+  top: 25%;
+  right: 1.35%;
+}
+
+#statuscafe {
+  font-size: 1em;
+  padding: 0;
+  margin: 0;
+  filter: drop-shadow(0 0 0.25rem var(--slugpink-sh));
+  -webkit-filter: drop-shadow(0 0 0.25rem var(--slugpink-sh));
+}
+
+div#status-box {
+  border: groove var(--slugred) 3px;
+  border-radius: 0.25em;
+  min-height: 100%;
+  background: linear-gradient(
+      0deg,
+      rgba(121, 23, 6, 0.651),
+      rgba(126, 47, 10, 0.329)
+    ),
+    url(img/bg_necropolis.png);
+  background-size: cover;
+  overflow-y: scroll;
+  overflow: hidden;
+}
+
+#statuscafe-title {
+  text-align: right;
+  padding: 0;
+  filter: hue-rotate(-30deg);
+  -webkit-filter: hue-rotate(-30deg);
+  margin-right: 0.5em;
+}
+
+#statuscafe-title p {
+  font-family: nkairlines, "Times New Roman", Times, serif;
+  font-size: 2.75em;
+  line-height: 0.6;
+  z-index: 2;
+  animation-duration: 8s;
+  -webkit-animation-duration: 8s;
+}
+
+#statuscafe-username {
+  font-size: 1em;
+  line-height: 1.15;
+  font-family: sh-pinscher, "Times New Roman", Times, serif;
+  color: var(--slugpink);
+  padding: 0.2em 0.5rem;
+}
+
+#statuscafe-username a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--slugorange-sh);
+  font-size: 1.2em;
+  line-height: 1.15;
+
+  &:hover {
+    color: var(--slugblue-sh);
+  }
+}
+
+#statuscafe-content {
+  font-family: awful, "Times New Roman", Times, serif;
+  color: var(--slugyellow);
+  text-shadow: 0px 0px 2px var(--slugyellow-sh);
+  font-size: 1.2em;
+  line-height: 1;
+  opacity: 0.85;
+  margin: 0;
+  padding: 0 0.5em;
+}
+
+/* Cbox - Chat Widget */
+/* Kinda weird to have this extra div, but without it, the cool glowing effect applied by the filter/keyframing cuts off sharply. That makes the purpose of this div solely for allowing the blur (which spills outside the bounds of the nested div) to be visible to the viewer */
+div#cbox {
+  position: absolute;
+}
+
+#cbox {
+  top: 40%;
+  right: 6.5%;
+  width: 14vw;
+  height: 42vh;
+  filter: drop-shadow(0 0 0.15rem var(--slugorange-sh));
+  -webkit-filter: drop-shadow(0 0 0.15rem var(--slugorange-sh));
+}
+
+#cbox-title {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: -7.25%;
+}
+
+#cbox-title img {
+  margin-left: 0.5em;
+  max-width: 35%;
+  height: auto;
+  z-index: 1;
+}
+
+#cbox-title p {
+  font-family: nkairlines, "Times New Roman", Times, serif;
+  line-height: 1.2;
+  filter: sepia(30%);
+  -webkit-filter: sepia(30%);
+  font-size: 3.25em;
+  animation-duration: 5.5s;
+  -webkit-animation-duration: 5.5s;
+}
+
+iframe.cbox {
+  width: 100%;
+  height: 100%;
+  border-radius: 1%;
+  border: ridge 0.15em var(--slugyellow-sh);
+  background-color: var(--slugblack);
+  -ms-overflow-style: none;
+  /* Hide scrollbar in Internet Explorer & MS Edge */
+  scrollbar-width: none;
+  /* Hide in Firefox */
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  background-color: #373737;
+}
+
+.cbox::-webkit-scrollbar {
+  display: none;
+  /* for Chrome, Safari, and Opera */
+}
+
+/* roach widget */
+.roach-widget {
+  position: absolute;
+  top: 6%;
+  right: 12%;
+  width: 22vw;
+}
+
+/* All hail the almighty UBFunkey */
+.funkey img {
+  position: fixed;
+  width: 2%;
+  top: 45%;
+  right: 22.65%;
+  opacity: 0.75;
+  animation: float 2s ease-in-out infinite;
+  -moz-animation: float 2s ease-in-out infinite;
+  -webkit-animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 0.75rem rgb(113, 129, 12));
+  -webkit-filter: drop-shadow(0 0 0.75rem rgb(113, 129, 12));
+}
+
+.funkey a:hover img {
+  animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  filter: drop-shadow(0 0 0.75rem rgba(255, 0, 0, 0.75));
+  -webkit-filter: drop-shadow(0 0 0.75rem rgba(255, 0, 0, 0.75));
+}
+
+/* Simple CSS animations - I made these just using my brain and Mozilla's CSS documentation aside from the 'glow-text' one. That one was piecemealed from many different Codepens. */
+.float {
+  animation: float 3s ease-in-out infinite;
+  -moz-animation: float 3s ease-in-out infinite;
+  -webkit-animation: float 3s ease-in-out infinite;
+}
+
+.float img:hover {
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-0);
+  }
+}
+
+.glow {
+  transition: 100ms ease-in-out;
+  animation: glow 2.5s ease-in-out infinite;
+  -webkit-animation: glow 2.5 ease-in-out infinite;
+  -moz-animation: glow 2.5 ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.85;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes glow-btn {
+  0%,
+  100% {
+    color: rgba(213, 242, 50, 0.7);
+    box-shadow: blur 1px 1px 5px 1px rgba(222, 247, 113, 0.15);
+    border-color: rgba(194, 255, 63, 0.6);
+  }
+
+  50% {
+    color: rgba(213, 242, 50, 0.9);
+    box-shadow: blur 1px 1px 10px 1px rgba(168, 198, 60, 0.35);
+    border-color: rgba(194, 255, 63, 0.85);
+  }
+}
+
+@keyframes glow-text {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(203, 243, 41, 0.5),
+      0 0 0.6vw rgb(203, 243, 41, 0.2),
+      0 0 1vw rgb(203, 243, 41, 0.5),
+      0 0 1vw rgb(203, 243, 41, 0.4),
+      0 0 0.4vw rgb(177, 251, 91, 0.65),
+      0 0 0.1vw rgb(67, 119, 7, 0.4);
+    color: rgba(203, 243, 41, 0.8);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(85, 119, 7, 0.65),
+      0 0 0.25vw rgb(85, 119, 7, 0.6),
+      0 0 1vw rgb(85, 119, 7, 0.5),
+      0 0 1vw rgb(85, 119, 7, 0.75),
+      0 0 0.2vw rgb(85, 119, 7, 0.7),
+      0 0 0.1vw rgba(118, 160, 34, 0.6);
+    color: rgba(183, 230, 28, 0.75);
+  }
+}
+
+.rotateY {
+  animation: rotateY 8.5s linear infinite;
+  -moz-animation: rotateY 8.5s linear infinite;
+  -webkit-animation: rotateY 8.5s linear infinite;
+}
+
+@keyframes rotateY {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg);
+    -moz-transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg);
+    -webkit-transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg);
+  }
+}
+
+/* Mobile-only objects */
+.pc-hide {
+  display: none;
+}
+
+/* Media Queries - Kinda janky and low-effort, but my site is meant for desktop PCs first and foremost. */
+/* Modern Smartphones */
+@media screen and (max-width: 767px) {
+  div.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+  img.container-interface {
+    display: none;
+  }
+
+  .pc-hide {
+    display: contents;
+  }
+
+  div.iframe {
+    background-color: var(--slugblack);
+    padding: 0;
+    margin: 0;
+  }
+
+  div.iframe iframe {
+    background-color: var(--slugblack);
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+  }
+
+  /* Mobile-Only Dropdown Nav Menu. Shoutout to Aria McKinley; I based this CSS off their awesome Codepen here: https://codepen.io/AriTheElk/pen/XvgzKQ */
+  :root {
+    --dropdown-width: 33vw;
+    --dropdown-background: linear-gradient(
+      to right,
+      #373737 0%,
+      #333333 51%,
+      #242424 100%
+    );
+  }
+
+  div.dropdown {
+    font-family:
+      "04b",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+    color: var(--sluggreen);
+    animation: glow-text 4s ease-in-out infinite;
+    -moz-animation: glow-text 4s ease-in-out infinite;
+    -webkit-animation: glow-text 4s ease-in-out infinite;
+    position: sticky;
+    height: auto;
+    display: flex;
+    justify-content: right;
+    padding: 0;
+    border: none;
+  }
+
+  .dropdown {
+    position: relative;
+    background-color: transparent;
+  }
+
+  .dropdown summary > a.button {
+    font-size: 1.2rem;
+  }
+
+  .dropdown summary {
+    list-style: none;
+    list-style-type: none;
+    padding: 0.5rem;
+  }
+
+  .dropdown > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .dropdown summary:focus {
+    outline: none;
+  }
+
+  .dropdown summary:focus a.button {
+    padding: 0.25rem;
+  }
+
+  .dropdown summary:focus {
+    outline: none;
+  }
+
+  div.dropdown ul {
+    position: absolute;
+    text-align: center;
+    width: var(--dropdown-width);
+    box-sizing: border-box;
+    right: 0;
+    margin-right: 10%;
+    z-index: 2;
+    border-radius: 6px;
+    list-style: none;
+  }
+
+  .dropdown ul li {
+    background-image: var(--dropdown-background);
+    border: outset 2px var(--slugyellow-sh);
+    border-radius: 3px;
+    padding: 0;
+    margin: 0;
+  }
+
+  div.dropdown ul li a:link,
+  .dropdown ul li a:visited {
+    display: inline-block;
+    padding: 10px 0.8rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--sluggreen);
+  }
+
+  .dropdown ul li a:hover {
+    background-color: var(--dropdown-highlight);
+    border: outset 1px var(--slugyellow);
+    color: var(--slugblue);
+  }
+
+  /* Close the dropdown with outside clicks */
+  .dropdown > summary::before {
+    display: none;
+  }
+
+  .dropdown[open] > summary::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  div.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  img.container-interface {
+    display: none;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+  .pc-hide {
+    display: contents;
+  }
+
+  div.iframe {
+    padding: 0;
+    margin: 0;
+  }
+
+  div.iframe iframe {
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll;
+  }
+
+  /* Mobile-Only Dropdown Nav Menu. Shoutout to Aria McKinley; I based this CSS off their awesome Codepen here: https://codepen.io/AriTheElk/pen/XvgzKQ */
+  :root {
+    --dropdown-width: 33vw;
+    --dropdown-background: linear-gradient(
+      to right,
+      #373737 0%,
+      #333333 51%,
+      #242424 100%
+    );
+  }
+
+  div.dropdown {
+    font-family:
+      "04b",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+    color: var(--sluggreen);
+    animation: glow-text 4s ease-in-out infinite;
+    -moz-animation: glow-text 4s ease-in-out infinite;
+    -webkit-animation: glow-text 4s ease-in-out infinite;
+    position: sticky;
+    height: auto;
+    display: flex;
+    justify-content: right;
+    padding: 0;
+    border: none;
+  }
+
+  .dropdown {
+    position: relative;
+    background-color: transparent;
+  }
+
+  .dropdown summary > a.button {
+    font-size: 1.2rem;
+  }
+
+  .dropdown summary {
+    list-style: none;
+    list-style-type: none;
+    padding: 0.5rem;
+  }
+
+  .dropdown > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .dropdown summary:focus {
+    outline: none;
+  }
+
+  .dropdown summary:focus a.button {
+    padding: 0.25rem;
+  }
+
+  .dropdown summary:focus {
+    outline: none;
+  }
+
+  div.dropdown ul {
+    position: absolute;
+    text-align: center;
+    width: var(--dropdown-width);
+    box-sizing: border-box;
+    right: 0;
+    margin-right: 10%;
+    z-index: 2;
+    border-radius: 6px;
+    list-style: none;
+  }
+
+  .dropdown ul li {
+    background-image: var(--dropdown-background);
+    border: outset 2px var(--slugyellow-sh);
+    border-radius: 3px;
+    padding: 0;
+    margin: 0;
+  }
+
+  div.dropdown ul li a:link,
+  .dropdown ul li a:visited {
+    display: inline-block;
+    padding: 10px 0.8rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--sluggreen);
+  }
+
+  .dropdown ul li a:hover {
+    background-color: var(--dropdown-highlight);
+    border: outset 1px var(--slugyellow);
+    color: var(--slugblue);
+  }
+
+  /* Close the dropdown with outside clicks */
+  .dropdown > summary::before {
+    display: none;
+  }
+
+  .dropdown[open] > summary::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+
+/* Hi-res Displays (Only tested on a 2K monitor. Sorry (not really) retina bros.) */
+@media screen and (min-width: 1921px) {
+  img.container-interface {
+    width: 78.5vw;
+  }
+  nav {
+    top: 15%;
+  }
+  div.iframe {
+    margin-top: 0;
+  }
+  div.nav-buttons {
+    padding: 0 1.5em;
+  }
+  #statuscafe-title {
+    font-size: 1.45em;
+  }
+  #statuscafe-username {
+    font-size: 1.2em;
+  }
+  #statuscafe-content {
+    font-size: 1.6em;
+  }
+  #cbox-title {
+    font-size: 1.5em;
+    margin-bottom: -1em;
+  }
+}

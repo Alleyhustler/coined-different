@@ -1,0 +1,873 @@
+/* This sheet is specifically for all content within the iFrame. */
+/* Cheers to you for reading; I hope you learn something new!! - love, salty */
+
+/* Declare fonts */
+@font-face {
+  font-family: "04b";
+  src: url("fonts/04b_08.woff"), url("fonts/04b_08.woff2");
+}
+
+@font-face {
+  font-family: "sh-pinscher";
+  src: url("fonts/sh-pinscher.woff"), url("fonts/sh-pinscher.woff2");
+}
+
+@font-face {
+  font-family: "felipe";
+  src: url("fonts/felipe.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "awful";
+  src: url("fonts/awfullydigital.woff"), url("fonts/awfullydigital.woff2");
+}
+
+/* Declare color variables */
+:root {
+  --sluggreen: #b8eb00;
+  --sluggreen-sh: #89ad12;
+  --slugblack: #373737;
+  --slugblue: #5acdb9;
+  --slugblue-sh: #38ad9a;
+  --slugpurp: #de7bef;
+  --slugyellow: #fef37a;
+  --slugyellow-sh: #bdb33b;
+  --slugorange: #ffdc2e;
+  --slugorange-sh: #eca528;
+  --slugred: #e54c09;
+  --slugpink: #ff6f9d;
+  --slugpink-sh: #d4406f;
+}
+
+/* CSS reset (tries to make the viewport render with the same margins/padding on any browser) */
+* {
+  box-sizing: border-box;
+  /* Hide scrollbar in all browsers. */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* HTML reset - to make sure no weird margins/padding throws the rest of this sheet off. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+/* This plops the scanline overlay across the frame - Shoutout to kidwithtthechemicalz.neocities.org for pieces of this class! I love their website so much. */
+body::before {
+  content: "";
+  background-image: url(img/bg-overlay-scan.png);
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0.075;
+  pointer-events: none;
+}
+
+/* Set body font, font size, etc. */
+body {
+  font-family:
+    sh-pinscher,
+    system-ui,
+    -apple-system,
+    BaMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  cursor: url("img/biohazard-red.cur"), auto;
+  background-color: var(--slugblack);
+  font-size: 1em;
+  padding: 2.5% 5%;
+  color: var(--slugyellow);
+}
+
+/* This changes the cursor icon when you hover over a link or button. */
+a:hover,
+button:hover {
+  cursor: url("img/biohazard-green.cur"), auto;
+}
+
+/* Heading Tag Styling */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    "04b",
+    system-ui,
+    -apple-system,
+    BaMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  animation: glow-h 3s infinite;
+  -moz-animation: glow-h 3s infinite;
+  -webkit-animation: glow-h 3s infinite;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2em;
+  margin-top: 0.25em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1.25rem;
+}
+
+hr {
+  border: outset 2px var(--slugyellow);
+  border-radius: 1%;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  opacity: 0.8;
+  overflow: visible;
+  animation: glow-hr 4.5s ease-in-out infinite;
+  -webkit-animation: glow-hr 4.5s ease-in-out infinite;
+  -moz-animation: glow-hr 4.5s ease-in-out infinite;
+}
+
+/* Text Styling */
+p {
+  text-align: justify;
+}
+
+p,
+ul,
+ul > li {
+  opacity: 0.95;
+}
+
+b {
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.95;
+  color: var(--sluggreen);
+  text-shadow: 0 0 4px var(--sluggreen-sh);
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+b.date {
+  font-family: awful, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+  animation: glow-text 4.5s ease-in-out infinite;
+  -moz-animation: glow-text 4.5s ease-in-out infinite;
+  -webkit-animation: glow-text 4.5s ease-in-out infinite;
+  filter: hue-rotate(-25deg);
+  -webkit-filter: hue-rotate(-25deg);
+
+  &:hover {
+    filter: hue-rotate(-30deg);
+    -webkit-filter: hue-rotate(-30deg);
+  }
+}
+
+b.italo {
+  filter: hue-rotate(-30deg);
+  -webkit-filter: hue-rotate(-30deg);
+}
+
+/* Hyperlink <a> styling */
+a {
+  font-family:
+    sh-pinscher,
+    system-ui,
+    -apple-system,
+    BaMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  color: var(--slugblue);
+  text-shadow: 0 0 4px var(--slugblue-sh);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--slugpink);
+  text-shadow: 1px 1px 3px var(--slugpink-sh);
+  animation: pause;
+  -moz-animation: pause;
+  -webkit-animation: pause;
+}
+
+.big-a a {
+  animation: glow-blue 3s infinite;
+  -moz-animation: glow-blue 3s infinite;
+  -webkit-animation: glow-blue 3s infinite;
+  font-size: 1.5rem;
+}
+
+.big-a a:hover {
+  color: var(--slugpink);
+  text-shadow: 1px 1px 3px var(--slugpink-sh);
+  animation: pause;
+  -moz-animation: pause;
+  -webkit-animation: pause;
+}
+
+.big-text {
+  font-size: 1.6rem;
+}
+
+/* This formats bulleted lists and nested items. */
+ul {
+  padding-left: 2em;
+  padding-top: 0.25rem;
+  padding-bottom: 0.2rem;
+  list-style-type: "▸";
+  text-align: left;
+}
+
+ul > li {
+  padding-left: 0.3em;
+}
+
+/* Button Styling. */
+button {
+  font-family:
+    "04b",
+    system-ui,
+    -apple-system,
+    BaMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  background-image: linear-gradient(
+    to right,
+    #37373761 0%,
+    #33333343 51%,
+    #24242481 100%
+  );
+  background-color: transparent;
+  border: 2px groove var(--slugblue);
+  box-shadow: 0 1px 5px 4px rgba(185, 250, 255, 0.1);
+  overflow: visible;
+  border-radius: 3px;
+  padding: 0.25em 0.5em;
+  margin: 0.25em;
+  animation: glow-text 3s ease-in-out infinite;
+  -moz-animation: glow-text 3s ease-in-out infinite;
+  -webkit-animation: glow-text 3s ease-in-out infinite;
+}
+
+button:hover {
+  animation: pause;
+  -moz-animation: pause;
+  -webkit-animation: pause;
+  color: var(--slugpink);
+  border-color: var(--slugblue-sh);
+}
+
+button:active {
+  transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  filter: brightness(90%);
+  -webkit-filter: brightness(90%);
+}
+
+/* Footer Styling (this is literally just the bit that says 'this page created on X date and last edited at X date) */
+footer {
+  padding: 1em 0 0.5em 0;
+  animation: glow;
+}
+
+footer p {
+  text-align: center;
+  padding-top: 0.5em;
+}
+
+/* Class to Center Images (when not in a flex container) */
+img.center {
+  margin: auto;
+}
+
+/* Text Alignment */
+.center-text {
+  text-align: center;
+}
+
+.right-align-text {
+  text-align: right;
+}
+
+.left-align-text {
+  text-align: left;
+}
+
+/* Tiny Flex Framework --- I am not really sure if this is the best method to accomplish my layout, but it's what works best for my coding style. I like each page to be varied in its presentation, so this mini-framework allows me to combine classes to get many different types of layouts. For me, this is far less headache than making esoteric flex item classes for every slightly-different layout. Also -- flex is the worst shit I've ever had to learn re: CSS; it's confusing and gargantuan, but it does have some good uses. I much prefer grid, but it's overkill for some things. */
+
+/* Container Properties (this stuff only applies to the flex container, not the items within them) */
+.flex {
+  display: flex;
+  gap: 0 1.25em;
+}
+
+.flex-nogap {
+  display: flex;
+  gap: 0;
+}
+
+/* Flow Styles (there's no row-nowrap class because that's the default behavior) */
+.flex-col-wrap {
+  flex-flow: column wrap;
+}
+
+.flex-col-nowrap {
+  flex-flow: column nowrap;
+}
+
+.flex-row-wrap {
+  flex-flow: row wrap;
+}
+
+/* Horizontal Alignment (there's no "start" class because it's the default behavior) 
+To read more: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
+.flex-around-hz {
+  justify-content: space-around;
+}
+
+.flex-btw-hz {
+  justify-content: space-between;
+}
+
+.flex-center-hz {
+  justify-content: center;
+}
+
+.flex-even-hz {
+  justify-content: space-evenly;
+}
+
+/* Aligning items within the flex container (there's no "flex-stretch-item" class because it's the default behavior) */
+.flex-start-item {
+  align-items: start;
+}
+
+.flex-center-item {
+  align-items: center;
+}
+
+.flex-end-item {
+  align-items: flex-end;
+}
+
+.flex-base-item {
+  align-items: baseline;
+}
+
+/* Vertical Alignment within a container that has WRAP enabled (there's no "start" class because it's the default behavior) */
+.flex-start-vert {
+  align-content: flex-start;
+}
+
+.flex-center-vert {
+  align-content: center;
+}
+
+.flex-end-vert {
+  align-content: flex-end;
+}
+
+.flex-even-vert {
+  align-content: space-evenly;
+}
+
+.flex-around-vert {
+  align-content: space-around;
+}
+
+.flex-btw-vert {
+  align-content: space-between;
+}
+
+/* Item Self-Alignment Overrides */
+.flex-center-self {
+  align-self: center;
+}
+
+.flex-start-self {
+  align-self: flex-start;
+}
+
+.flex-end-self {
+  align-self: flex-end;
+}
+
+.flex-stretch-self-hz {
+  justify-self: stretch;
+}
+
+.flex-center-self-hz {
+  justify-self: center;
+}
+
+.flex-start-self-hz {
+  justify-self: start;
+}
+
+.flex-end-self-hz {
+  justify-self: end;
+}
+
+/* Grow/Shrink Items */
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.flex-grow-2 {
+  flex-grow: 2;
+}
+
+.flex-grow-3 {
+  flex-grow: 3;
+}
+
+/* --- END MINI FLEX FRAMEWORK --- */
+
+/* Set appropriate margins for images in a flex container. */
+img.left {
+  margin-right: 1.5rem;
+}
+
+img.right {
+  margin-left: 1.5rem;
+}
+
+/* ADD SOME EXTRA SPACE (to that bitch, respectfully) */
+.margin-hz {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.padding-hz {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/* Squeeze all images to prevent some bonk ass stretching. */
+img {
+  max-width: 30%;
+  height: auto;
+}
+
+/* Bad code below :) */
+.wide-load {
+  width: 100%;
+}
+
+/* Make any image a circle with this one easy trick that web developers don't want you to know! */
+img.circle-img {
+  border-radius: 10rem;
+}
+
+/* Transformations */
+.mirror {
+  -ms-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.flip {
+  -ms-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+/* Fun little decorative box */
+.border-orange {
+  border: ridge 4px var(--slugorange-sh);
+  border-radius: 0.5em;
+  padding: 1em;
+  background-image: url(img/pixel-skyline.gif);
+  background-blend-mode: screen;
+  background-position: 100%;
+}
+
+/* Very Simple CSS animations - I made most of these just using my brain and Mozilla's CSS documentation. */
+
+/* Purple Glow */
+.glow-purple {
+  color: whitesmoke;
+  animation: glow-purple 3.5s ease-in-out infinite;
+  -moz-animation: glow-purple 3.5s ease-in-out infinite;
+  -webkit-animation: glow-purple 3.5s ease-in-out infinite;
+}
+
+.glow-purple a:hover {
+  color: white;
+  animation: glow-white 3.5s ease-in-out infinite;
+  -moz-animation: glow-white 3.5s ease-in-out infinite;
+  -webkit-animation: glow-white 3.5s ease-in-out infinite;
+}
+
+@keyframes glow-purple {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(243, 41, 203, 0.25),
+      0 0 0.6vw rgba(205, 42, 159, 0.1),
+      0 0 1vw rgb(243, 41, 186, 0.35),
+      0 0 1vw rgba(246, 55, 192, 0.387),
+      0 0 0.4vw rgba(223, 83, 169, 0.5),
+      0 0 0.1vw rgba(172, 31, 132, 0.2);
+    color: rgba(248, 88, 149, 0.9);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(243, 41, 186, 0.3),
+      0 0 0.25vw rgba(119, 7, 85, 0.4),
+      0 0 1vw rgba(119, 7, 72, 0.325),
+      0 0 1vw rgba(119, 7, 91, 0.5),
+      0 0 0.2vw rgba(119, 7, 69, 0.4),
+      0 0 0.1vw rgba(160, 34, 101, 0.461);
+    color: rgba(242, 94, 168, 0.8);
+  }
+}
+
+@keyframes glow-white {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(241, 241, 241, 0.5),
+      0 0 0.6vw rgba(241, 241, 241, 0.2),
+      0 0 1vw rgba(238, 238, 238, 0.5),
+      0 0 1vw rgba(237, 237, 237, 0.4),
+      0 0 0.4vw rgba(255, 255, 255, 0.65),
+      0 0 0.1vw rgba(115, 115, 115, 0.4);
+    color: rgba(235, 235, 235, 0.7);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(105, 105, 105, 0.65),
+      0 0 0.25vw rgba(119, 119, 119, 0.6),
+      0 0 1vw rgba(112, 112, 112, 0.5),
+      0 0 1vw rgba(109, 109, 109, 0.75),
+      0 0 0.2vw rgba(113, 113, 113, 0.7),
+      0 0 0.1vw rgba(152, 152, 152, 0.6);
+    color: rgba(237, 237, 237, 0.8);
+  }
+}
+
+.glow-blue {
+  color: whitesmoke;
+  animation: glow-blue 3s infinite;
+  -moz-animation: glow-blue 3s infinite;
+  -webkit-animation: glow-blue 3s infinite;
+}
+
+@keyframes glow-blue {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(41, 243, 219, 0.5),
+      0 0 0.6vw rgb(41, 243, 219, 0.2),
+      0 0 1vw rgb(41, 243, 219, 0.5),
+      0 0 1vw rgb(41, 243, 219, 0.4),
+      0 0 0.4vw rgba(91, 240, 251, 0.65),
+      0 0 0.1vw rgba(7, 119, 113, 0.4);
+    color: rgb(97, 232, 209, 0.8);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(7, 119, 100, 0.65),
+      0 0 0.25vw rgba(7, 119, 100, 0.6),
+      0 0 1vw rgba(7, 119, 108, 0.5),
+      0 0 1vw rgba(7, 119, 119, 0.75),
+      0 0 0.2vw rgba(7, 119, 100, 0.7),
+      0 0 0.1vw rgba(34, 160, 147, 0.6);
+    color: rgba(97, 232, 209, 0.75);
+  }
+}
+
+/* Infloatables */
+.float {
+  animation: float 3s ease-in-out infinite;
+  -moz-animation: float 3s ease-in-out infinite;
+  -webkit-animation: float 3s ease-in-out infinite;
+
+  &:hover {
+    animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-0);
+  }
+}
+
+/* Shakin' IMG Syndrome */
+.shake:hover {
+  animation: shake 1s linear infinite;
+  -moz-animation: shake 1s linear infinite;
+  -webkit-animation: shake 1s linear infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(2px, 1px) rotate(0deg);
+    -webkit-transform: translate(2px, 1px) rotate(0deg);
+  }
+
+  10% {
+    transform: translate(-1px, -2px) rotate(0deg);
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+  }
+
+  20% {
+    transform: translate(-3px) rotate(1deg);
+    -webkit-transform: translate(-3px) rotate(1deg);
+  }
+
+  30% {
+    transform: translate(0, 2px) rotate(0deg);
+    -webkit-transform: translate(0, 2px) rotate(0deg);
+  }
+
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+  }
+
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+  }
+
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+  }
+
+  70% {
+    transform: translate(2px, 1px) rotate(-1deg);
+    -webkit-transform: translate(2px, 1px) rotate(-1deg);
+  }
+
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+  }
+
+  90% {
+    transform: translate(2px, 2px) rotate(0deg);
+    -webkit-transform: translate(2px, 2px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+/* in 'n' out */
+.phase:hover {
+  animation: phase 2.5s ease-in-out infinite;
+  -moz-animation: phase 2.5s ease-in-out infinite;
+  -webkit-animation: phase 2.5s ease-in-out infinite;
+  transition: 300ms ease-in-out;
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+}
+
+@keyframes phase {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Animation for the "on load" screen flicker */
+.flicker {
+  animation: flicker 1.4 linear 1;
+  -moz-animation: flicker 1.4s linear 1;
+  -webkit-animation: flicker 1.4s linear 1;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 0.1;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.4;
+  }
+
+  25% {
+    opacity: 0.2;
+  }
+
+  30%,
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Sets of keyframes for various glowing animations. */
+@keyframes glow-a {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.1vw rgb(90, 205, 185, 0.1),
+      0 0 0.2vw rgb(90, 205, 185, 0.025),
+      0 0 0.2vw rgba(78, 216, 216, 0.2),
+      0 0 0.3vw rgb(90, 205, 185, 0.15),
+      0 0 0.1vw rgba(150, 251, 255, 0.2),
+      0 0 0.1vw rgba(46, 141, 155, 0.25);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.15vw rgba(57, 168, 159, 0.3),
+      0 0 0.2vw rgb(57, 168, 159, 0.4),
+      0 0 0.3vw rgb(57, 168, 159, 0.25),
+      0 0 0.2vw rgb(57, 168, 159, 0.3),
+      0 0 0.075vw rgb(57, 168, 159, 0.35),
+      0.02vw rgba(34, 160, 158, 0.4);
+    color: rgba(90, 205, 185, 0.9);
+  }
+}
+
+@keyframes glow-h {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgb(254, 243, 122, 0.4),
+      0 0 0.6vw rgb(254, 243, 122, 0.2),
+      0 0 1vw rgba(216, 205, 78, 0.4),
+      0 0 1vw rgb(254, 243, 122, 0.25),
+      0 0 0.4vw rgba(255, 246, 150, 0.5),
+      0 0 0.1vw rgba(155, 146, 46, 0.35);
+    color: rgb(254, 243, 122, 0.85);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(168, 159, 57, 0.65),
+      0 0 0.25vw rgb(168, 159, 57, 0.6),
+      0 0 1vw rgb(168, 159, 57, 0.5),
+      0 0 1vw rgb(168, 159, 57, 0.75),
+      0 0 0.2vw rgb(168, 159, 57, 0.7),
+      0 0 0.1vw rgba(149, 160, 34, 0.6);
+    color: rgba(225, 216, 122, 0.9);
+  }
+}
+
+@keyframes glow-hr {
+  0%,
+  100% {
+    box-shadow: 0 0 10px 1px rgba(154, 144, 29, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 10px 1px rgba(254, 243, 122, 0.5);
+  }
+}
+
+@keyframes glow-text {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.3vw rgba(203, 243, 41, 0.5),
+      0 0 0.6vw rgb(203, 243, 41, 0.2),
+      0 0 1vw rgb(203, 243, 41, 0.5),
+      0 0 1vw rgb(203, 243, 41, 0.4),
+      0 0 0.4vw rgb(177, 251, 91, 0.65),
+      0 0 0.1vw rgb(67, 119, 7, 0.4);
+    color: rgb(203, 243, 41, 0.9);
+    border-color: rgb(97, 232, 209);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.5vw rgba(85, 119, 7, 0.65),
+      0 0 0.25vw rgb(85, 119, 7, 0.6),
+      0 0 1vw rgb(85, 119, 7, 0.5),
+      0 0 1vw rgb(85, 119, 7, 0.75),
+      0 0 0.2vw rgb(85, 119, 7, 0.7),
+      0 0 0.1vw rgba(118, 160, 34, 0.6);
+    color: rgba(183, 230, 28, 0.8);
+    border-color: rgb(90, 205, 185, 0.875);
+  }
+}
